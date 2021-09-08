@@ -1,2 +1,3 @@
-# H3-Projet-Technique-2021-22
-Projet technique H3 Hitema
+# H3 Hitema - Projet Techique 2021/22
+
+Développement et déploiement d'une application dans le cadre du projet technique Architecture/Docker
