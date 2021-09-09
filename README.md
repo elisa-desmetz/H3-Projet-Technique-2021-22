@@ -4,4 +4,4 @@ Développement et déploiement d'une application dans le cadre du projet techniq
 
 ## Architecture
 
-![Alt text](;/Diagrams/Architecture.png)
+![Alt text](./Diagrams/Architecture.png)
