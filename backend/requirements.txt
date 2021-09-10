@@ -1,6 +1,10 @@
 fastapi
 gunicorn
 uvicorn
+sqlalchemy
+PyMySQL
+mysqlclient
+mysql-connector-python
 joblib
 aiofiles
 jinja2

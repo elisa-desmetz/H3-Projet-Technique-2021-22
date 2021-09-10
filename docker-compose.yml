@@ -2,6 +2,7 @@ version: '3'
 
 services :
     backend :
+        restart : unless-stopped
         build : ./backend
         container_name: jobxp-backend-container
         networks: 
@@ -9,7 +10,7 @@ services :
         ports : 
             - 3000:3000
         depends_on: 
-            - database
+            - db
     
     frontend :
         build : ./frontend
@@ -17,31 +18,35 @@ services :
             - ./frontend/html_files/:/usr/share/nginx/html
         container_name: jobxp-frontend-container
         ports :
-            - "8000:80"
+            - 8000:80
         networks: 
             - jobxp-network
         depends_on: 
             - backend
-            - database
+            - db
 
-    database :
-        restart: always
-        image : mysql:latest
+    db :
         container_name: jobxp-database-container
-        ports:
-            - "3305:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: newuser 
-            MYSQL_PASSWORD: newpassword
-            MYSQL_DATABASE : jobxpdata
-            MYSQL_ROOT_HOST : '%'
-        volumes:
+        image : mysql:latest
+        volumes :
+            - ./database/data:/var/lib/mysql
             - ./database:/docker-entrypoint-initdb.d/:ro
-            - .:/app
-        networks: 
+            - .:/app    
+        ports :
+            - 3305:3306
+        restart : always
+        environment :
+            MYSQL_ROOT_PASSWORD : root
+            MYSQL_DATABASE : database
+            MYSQL_USER: user 
+            MYSQL_PASSWORD: pass
+            MYSQL_ROOT_HOST : '%'
+        networks : 
             - jobxp-network
+            
+        security_opt:
+            - seccomp:unconfined
 
-networks: 
+networks : 
     jobxp-network :
         driver: bridge
