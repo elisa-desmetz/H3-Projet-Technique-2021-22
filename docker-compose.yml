@@ -7,8 +7,6 @@ services :
         container_name: jobxp-backend-container
         networks: 
             - jobxp-network
-        ports : 
-            - 3000:3000
         depends_on: 
             - db
     
@@ -27,7 +25,7 @@ services :
 
     db :
         container_name: jobxp-database-container
-        image : mysql:latest
+        image: bitnami/mysql:8.0.20
         volumes :
             - ./database/data:/var/lib/mysql
             - ./database:/docker-entrypoint-initdb.d/:ro
@@ -41,6 +39,7 @@ services :
             MYSQL_USER: user 
             MYSQL_PASSWORD: pass
             MYSQL_ROOT_HOST : '%'
+            MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
         networks : 
             - jobxp-network
             
