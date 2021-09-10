@@ -13,3 +13,6 @@ Il contient une page permettant d'afficher les recettes de fabrication des objet
 ## Architecture
 
 ![Diagramme Architecture](./Diagrams/Architecture.png)
+
+## Mes images sur Docker Hub
+https://hub.docker.com/u/elisadesmetz
