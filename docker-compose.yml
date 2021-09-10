@@ -4,6 +4,12 @@ services :
     backend :
         build : ./backend
         container_name: jobxp-backend-container
+        networks: 
+            - jobxp-network
+        ports : 
+            - 3000:3000
+        depends_on: 
+            - database
     
     frontend :
         build : ./frontend
@@ -12,3 +18,30 @@ services :
         container_name: jobxp-frontend-container
         ports :
             - "8000:80"
+        networks: 
+            - jobxp-network
+        depends_on: 
+            - backend
+            - database
+
+    database :
+        restart: always
+        image : mysql:latest
+        container_name: jobxp-database-container
+        ports:
+            - "3305:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: newuser 
+            MYSQL_PASSWORD: newpassword
+            MYSQL_DATABASE : jobxpdata
+            MYSQL_ROOT_HOST : '%'
+        volumes:
+            - ./database:/docker-entrypoint-initdb.d/:ro
+            - .:/app
+        networks: 
+            - jobxp-network
+
+networks: 
+    jobxp-network :
+        driver: bridge
