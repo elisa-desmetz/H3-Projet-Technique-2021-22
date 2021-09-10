@@ -14,5 +14,8 @@ Il contient une page permettant d'afficher les recettes de fabrication des objet
 
 ![Diagramme Architecture](./Diagrams/Architecture.png)
 
+## docker-compose up
+![image](https://user-images.githubusercontent.com/71330692/132920064-3b4e08aa-1cdf-47e4-92c0-ebdea301cb6d.png)
+
 ## Mes images sur Docker Hub
 https://hub.docker.com/u/elisadesmetz
